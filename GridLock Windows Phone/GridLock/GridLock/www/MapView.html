@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            MapView
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <link href="files/resources/lib/theme/jqm/jqm.css" rel="stylesheet" />
+        <link href="files/resources/lib/theme/flat-ui/flat-ui.css" rel="stylesheet" />
+        <link href="files/resources/lib/jquerymobile/1.4.2/jquery.mobile.structure-1.4.2.css"
+        rel="stylesheet" />
+        <script type="text/javascript" src="files/resources/lib/store/json2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquery/jquery-1.9.1.js">
+        </script>
+        <script type="text/javascript">
+                    $(document).bind("mobileinit", function()
+            {
+                if (navigator.userAgent.toLowerCase().indexOf("android") != -1)
+                {
+                    $.mobile.defaultPageTransition = 'none';
+                    $.mobile.defaultDialogTransition = 'none';
+                }
+                if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)
+                {
+                    $.mobile.allowCrossDomainPages = true;
+                    $.support.cors = true;
+                }
+            });
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquerymobile/1.4.2/jquery.mobile-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/js/mobilebase.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/event/customEventHandler.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/sha1.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/oauth.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/contexts.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jsonpath.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jquery.xml2json.min.js">
+        </script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquery-ui-map/jquery.ui.map.full.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/appery.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/get_target_platform.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/cordova.js">
+        </script>
+        <link href="files/resources/css/mobilebase.css" rel="stylesheet" type="text/css"
+        />
+        <script type="text/javascript" src="files/views/assets/js/services/service.js">
+        </script>
+    </head>
+    
+    <body>
+        <div data-role="page" style="min-height:480px;" dsid="MapView" id="MapView" class="type-interior"
+        data-theme="c">
+            <!-- mobileheader -->
+            <div data-role="header" data-position="fixed" data-add-back-btn="false" data-back-btn-text="Dash"
+            data-theme="c" name="mobileheader" id="MapView_mobileheader" class="MapView_mobileheader">
+                <h1 dsid="mobileheader">
+                    Map View
+                </h1>
+                <!-- mobilebutton_25 -->
+                <a data-role="button" name="mobilebutton_25" dsid="mobilebutton_25" class="MapView_mobilebutton_25 ui-btn-left"
+                id="MapView_mobilebutton_25" data-corners="true" data-icon="carat-l" data-iconpos="left"
+                data-inline='true' data-mini='true' data-theme="c" tabindex="9">
+                Back
+                </a>
+            </div>
+            <!-- mobilecontainer -->
+            <div data-role="content" id="MapView_mobilecontainer" name="mobilecontainer" class="MapView_mobilecontainer ui-content"
+            dsid="mobilecontainer" data-theme="c">
+                <link href="MapView.css" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="MapView.js">
+                </script>
+                <!-- googlemap_2 -->
+                <div id="MapView_googlemap_2" dsid="googlemap_2" name="googlemap_2" tiggzitype="object"
+                apperytype="object" class='MapView_googlemap_2' style='width:100%;'>
+                    <img class='MapView_googlemap_2' src="http://assets1.geocommons.com/d51ab1366bec6a2c4954db979e5921bd4cc140db/images/no_preview_map.png?1311276822"
+                    />
+                </div>
+                <ul data-role="listview" id="MapView_googlemap_2_markers" name="googlemap_2_markers"
+                dsid="googlemap_2_markers" style="display:none">
+                    <!-- marker_3 -->
+                    <li id="MapView_marker_3" name="marker_3" dsid="marker_3" tiggzitype="marker" apperytype="marker"
+                    rendered="false" latitude="" longitude="" text="Destination" address="500 UTA Boulevard"
+                    show_info="false" style="display:none">
+                        <div id="MapView_marker_3_infoWindow" name="marker_3_infoWindowContent" class='MapView_marker_3'>
+                        </div>
+                    </li>
+                </ul>
+                <!-- mobilesearchbar_5 -->
+                <div data-role="fieldcontain" class="MapView_mobilesearchbar_5 ">
+                    <div id="MapView_mobilesearchbar_5-cover-div">
+                        <img id="MapView_mobilesearchbar_5-cover-img" src="files/resources/image/icon-search-cover.png"
+                        />
+                    </div>
+                    <input type="search" name="mobilesearchbar_5" id="MapView_mobilesearchbar_5" dsid="mobilesearchbar_5"
+                    value="" placeholder="Destination" data-theme="c" tabindex="3" class="MapView_mobilesearchbar_5"
+                    />
+                </div>
+                <!-- mobilegrid_12 -->
+                <div class="MapView_mobilegrid_12_wrapper" data-wrapper-for="mobilegrid_12">
+                    <table id="MapView_mobilegrid_12" class="MapView_mobilegrid_12" dsid="mobilegrid_12"
+                    name="mobilegrid_12" cellpadding=0 cellspacing=0>
+                        <col style="width:auto;" />
+                        <col style="width:auto;" />
+                        <tr class="MapView_mobilegrid_12_row_0">
+                            <!-- mobilegridcell_13 -->
+                            <td id="MapView_mobilegridcell_13" name="mobilegridcell_13" class="MapView_mobilegridcell_13"
+                            colspan=1 rowspan=1>
+                                <div class="cell-wrapper">
+                                    <!-- mobilebutton_21 -->
+                                    <a data-role="button" name="mobilebutton_21" dsid="mobilebutton_21" class="MapView_mobilebutton_21"
+                                    id="MapView_mobilebutton_21" data-corners="true" data-icon="none" data-iconpos='nowhere'
+                                    data-mini="false" data-theme="c" tabindex="5">
+                                    35 MPH
+                                    </a>
+                                    <!-- mobilelabel_17 -->
+                                    <div name="mobilelabel_17" id="MapView_mobilelabel_17" dsid="mobilelabel_17" data-role="appery_label"
+                                    class="MapView_mobilelabel_17">
+                                        Your Speed
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- mobilegridcell_14 -->
+                            <td id="MapView_mobilegridcell_14" name="mobilegridcell_14" class="MapView_mobilegridcell_14"
+                            colspan=1 rowspan=1>
+                                <div class="cell-wrapper">
+                                    <!-- mobilebutton_22 -->
+                                    <a data-role="button" name="mobilebutton_22" dsid="mobilebutton_22" class="MapView_mobilebutton_22"
+                                    id="MapView_mobilebutton_22" data-corners="true" data-icon="none" data-iconpos='nowhere'
+                                    data-mini="false" data-theme="c" tabindex="6">
+                                    45 MPH
+                                    </a>
+                                    <!-- mobilelabel_19 -->
+                                    <div name="mobilelabel_19" id="MapView_mobilelabel_19" dsid="mobilelabel_19" data-role="appery_label"
+                                    class="MapView_mobilelabel_19">
+                                        Speed Limit
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="MapView_mobilegrid_12_row_1">
+                            <!-- mobilegridcell_15 -->
+                            <td id="MapView_mobilegridcell_15" name="mobilegridcell_15" class="MapView_mobilegridcell_15"
+                            colspan=1 rowspan=1>
+                                <div class="cell-wrapper">
+                                    <!-- mobilebutton_23 -->
+                                    <a data-role="button" name="mobilebutton_23" dsid="mobilebutton_23" class="MapView_mobilebutton_23"
+                                    id="MapView_mobilebutton_23" data-corners="true" data-icon="none" data-iconpos='nowhere'
+                                    data-mini="false" data-theme="c" tabindex="7">
+                                    2 m 43 s
+                                    </a>
+                                    <!-- mobilelabel_18 -->
+                                    <div name="mobilelabel_18" id="MapView_mobilelabel_18" dsid="mobilelabel_18" data-role="appery_label"
+                                    class="MapView_mobilelabel_18">
+                                        Time Before Light Change
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- mobilegridcell_16 -->
+                            <td id="MapView_mobilegridcell_16" name="mobilegridcell_16" class="MapView_mobilegridcell_16"
+                            colspan=1 rowspan=1>
+                                <div class="cell-wrapper">
+                                    <!-- mobilebutton_24 -->
+                                    <a data-role="button" name="mobilebutton_24" dsid="mobilebutton_24" class="MapView_mobilebutton_24"
+                                    id="MapView_mobilebutton_24" data-corners="true" data-icon="none" data-iconpos='nowhere'
+                                    data-mini="false" data-theme="c" tabindex="8">
+                                    45 MPH
+                                    </a>
+                                    <!-- mobilelabel_20 -->
+                                    <div name="mobilelabel_20" id="MapView_mobilelabel_20" dsid="mobilelabel_20" data-role="appery_label"
+                                    class="MapView_mobilelabel_20">
+                                        Recommended Speed
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- mobilefooter -->
+            <div data-role="footer" data-position="fixed" class="MapView_mobilefooter" name="mobilefooter"
+            dsid="mobilefooter" id="MapView_mobilefooter" data-theme="c">
+            </div>
+        </div>
+    </body>
+
+</html>
