@@ -40,7 +40,7 @@ function Gauge(placeholderName, configuration)
 					.attr("cx", this.config.cx)
 					.attr("cy", this.config.cy)
 					.attr("r", this.config.raduis)
-					.style("fill", "#ccc")
+					.style("fill", "#ccc")//#1e773d
 					.style("stroke", "#000")
 					.style("stroke-width", "0.5px");
 

@@ -1,6 +1,36 @@
 /* Empty. Add your own CSS if you like */
 
-/*
+
 .card .item{
+  /*background: #f0b840; /*yellow*/
+  /*background: #66cc33;*/
+    /*background: #4a87ee;*/
+    /*background: #444;*/
+}
+
+/*.bar-balanced{
+  background: #1e773d;
+  color: #1e773d;
+}*/
+
+/*.bar-balanced{
   background: #f0b840;
 }*/
+h1 {
+font-size:400%;
+}
+
+/*.title-image {
+    margin-top: 8px;
+    height: 27px;
+}*/
+
+/*.ion-content .ion-pane{
+  background: url('../img/112.jpg') no-repeat center;
+}*/
+.pane {
+        background: url(/img/112.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }

@@ -29,7 +29,7 @@
 
         function createGauge(name, label, min, max) {
             var config = {
-                size: width,
+                size: width-50,
                 label: label,
                 min: undefined != min ? min : 0,
                 max: undefined != max ? max : 100,
@@ -38,6 +38,9 @@
 
             var range = config.max - config.min;
 
+
+
+  // TODO Apply scripts to make these color bands dynamic
             config.greenZones = [{
                 from: config.min + range * 0.5,
                 to: config.min + range * 0.7
@@ -57,17 +60,33 @@
         }
 
         function createGauges() {
-            createGauge("speed", "Speed", 0, 90);
+            createGauge("speed", "MPH", 0, 90);
             //createGauge("cpu", "CPU");
             //createGauge("network", "Network");
             //createGauge("test", "Test", -50, 50 );
         }
 
         function updateGauges() {
+
+          // ADD API DATA CALL HERE AND BIND IT TO REDRAW FUNCTION
+          // Write function to change values of color bands
             for (var key in gauges) {
                 var value = getRandomValue(gauges[key]);
                 gauges[key].redraw(value, 1000);
-            }
+            //     gauges[key].config.greenZones = [{
+            //         from: config.min + range * value+1,
+            //         to: config.min + range * value+2
+            //     }];
+            //     gauges[key].config.yellowZones = [{
+            //         from: config.min + range * value,
+            //         to: config.min + range * value+1
+            //     }];
+            //     gauges[key].config.redZones = [{
+            //         from: config.min,
+            //         to: config.min + range * value
+            //     }];
+             }
+
         }
 
         function getRandomValue(gauge) {
@@ -88,12 +107,16 @@
 <body ng-app="starter" onload="initialize()" ng-controller="test">
 
     <ion-pane>
-        <ion-header-bar class="bar-energized">
-            <h1 class="title">GridLock</h1>
-        </ion-header-bar>
-        <ion-content>
+      <img class="title-image" style="margin-left: 250px;"height="12%" src="/img/GridLockLogo.png" />
 
-            <div style="text-align:center; margin-top: 20px;">
+        <!-- <ion-header-bar class="bar-light" > -->
+
+            <!-- <h1 class="title" style="color: #1e773d" >GridLock</h1> -->
+            <!-- <img class="title"   src="/img/GridLockLogo.png"/> -->
+        <!-- </ion-header-bar> -->
+        <ion-content >
+
+            <div style="text-align:center;margin-top: 20px;"> <!--margin-top: 20px;-->
                 <span id="speedGaugeContainer"></span>
             </div>
 
@@ -101,26 +124,28 @@
 
                 <div class="col">
 
-                    <div class="card slide-in-left">
+                    <div class="card">
+                      <div  style="text-align: center; color: #1e773d;" class="item item-divider">
+                          Goal Speed
+                      </div>
                         <div class="item item-text-wrap" style="text-align: center ">
-                            <h1 style="color: #f0b840">{{item.goalSpeed}}</h1>
-                            <h2 style="color: #f0b840">{{item.units}}</h2>
+                            <h1 style="color: #1e773d">{{item.goalSpeed}}</h1>
+                            <!-- <h2 style="color: #000">{{item.units}}</h2> -->
                         </div>
-                        <div  style="color: #f0b840" class="item item-divider">
-                            Goal Speed
-                        </div>
+
                     </div>
                 </div>
                 <div class="col">
 
-                    <div class="card slide-in-right">
+                    <div class="card">
+                      <div  style="text-align: center; color: #1e773d;" class="item item-divider">
+                          Speed Limit
+                      </div>
                         <div class="item item-text-wrap" style="text-align: center ">
-                            <h1 style="color: #f0b840">{{item.speedLimit}}</h1>
-                            <h2 style="color: #f0b840">{{item.units}}</h2>
+                            <h1 style="color: #1e773d">{{item.speedLimit}}</h1>
+                            <!-- <h2 style="color: #000">{{item.units}}</h2> -->
                         </div>
-                        <div  style="color: #f0b840" class="item item-divider">
-                            Speed Limit
-                        </div>
+
                     </div>
                 </div>
             </div>
