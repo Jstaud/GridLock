@@ -38,22 +38,19 @@
 
             var range = config.max - config.min;
 
-
-
   // TODO Apply scripts to make these color bands dynamic
             config.greenZones = [{
-                from: config.min + range * 0.5,
-                to: config.min + range * 0.7
+                from: config.min + 27,
+                to: config.min + 60
             }];
             config.yellowZones = [{
-                from: config.min + range * 0.45,
-                to: config.min + range * 0.5
+                from: config.min + 25,
+                to: config.min + 27
             }];
             config.redZones = [{
-                from: config.min,
-                to: config.min + range * 0.45
+                from: config.min + 10,
+                to: config.min + 25
             }];
-
 
             gauges[name] = new Gauge(name + "GaugeContainer", config);
             gauges[name].render();
@@ -68,24 +65,29 @@
 
         function updateGauges() {
 
-          // ADD API DATA CALL HERE AND BIND IT TO REDRAW FUNCTION
-          // Write function to change values of color bands
-            for (var key in gauges) {
-                var value = getRandomValue(gauges[key]);
-                gauges[key].redraw(value, 1000);
-            //     gauges[key].config.greenZones = [{
-            //         from: config.min + range * value+1,
-            //         to: config.min + range * value+2
-            //     }];
-            //     gauges[key].config.yellowZones = [{
-            //         from: config.min + range * value,
-            //         to: config.min + range * value+1
-            //     }];
-            //     gauges[key].config.redZones = [{
-            //         from: config.min,
-            //         to: config.min + range * value
-            //     }];
-             }
+          // // ADD API DATA CALL HERE AND BIND IT TO REDRAW FUNCTION
+          // // Write function to change values of color bands
+          //   for (var key in gauges) {
+          //       var value = getRandomValue(gauges[key]);
+          //       var range = getRandomValue(gauges[key]);
+          //       gauges[key].redraw(value, 1000);
+          //       console.log("range: "+range+" value: "+value);
+
+          //       gauges[key].config.greenZones = [{
+          //           from: config.min + range * value+1,
+          //           to: config.min + range * value+2
+          //       }];
+          //       gauges[key].config.yellowZones = [{
+          //           from: config.min + range * value,
+          //           to: config.min + range * value+1
+          //       }];
+          //       gauges[key].config.redZones = [{
+          //           from: config.min,
+          //           to: config.min + range * value
+          //       }];
+
+                
+          //    }
 
         }
 
@@ -104,7 +106,7 @@
     <script src="js/app.js"></script>
 </head>
 
-<body ng-app="starter" onload="initialize()" ng-controller="test">
+<body ng-app="starter" onload="initialize()" ng-controller="locationCtrl">
 
     <ion-pane>
       <img class="title-image" style="margin-left: 250px;"height="12%" src="/img/GridLockLogo.png" />
@@ -130,7 +132,8 @@
                       </div>
                         <div class="item item-text-wrap" style="text-align: center ">
                             <h1 style="color: #1e773d">{{item.goalSpeed}}</h1>
-                            <!-- <h2 style="color: #000">{{item.units}}</h2> -->
+                            <h2 style="color: #000">{{item.lat}}</h2>
+                            <h2 style="color: #000">{{item.lng}}</h2>
                         </div>
 
                     </div>
