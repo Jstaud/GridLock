@@ -26,9 +26,9 @@ angular.module('starter', ['ionic'])
   function initialize() {
 
     $scope.data = [
-      { 
-        goalSpeed: 55,
-        speedLimit: 60,
+      {
+        goalSpeed: 00,
+        speedLimit: 00,
         currentSpeed: 0,
         units: 'MPH',
         lat: 0,
@@ -47,7 +47,7 @@ angular.module('starter', ['ionic'])
 
     // $scope.map = map;
   }
-  
+
   $scope.getCurrentPosition = function(gotPosition, gotSpeed, gotDirection) {
 
     navigator.geolocation.getCurrentPosition(function(pos) {
@@ -58,7 +58,7 @@ angular.module('starter', ['ionic'])
       gotPosition(pos.coords.latitude, pos.coords.longitude);
       gotSpeed(pos.coords.speed);
       gotDirection(pos.coords.heading);
-    }, 
+    },
     function(error) {
       $scope.loading = $ionicLoading.show({
         template: 'Cannot get current location. \nRetrying...',
@@ -67,9 +67,9 @@ angular.module('starter', ['ionic'])
     });
   };
 
-  
+
   window.addEventListener('load', initialize);
-  
+
   $interval(function() {
     $scope.getCurrentPosition(function(lat, lng) {
       console.log(lat + ", " + lng + ", " );
@@ -87,6 +87,3 @@ angular.module('starter', ['ionic'])
   }, 2000);
 
 });
-
-
-
